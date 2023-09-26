@@ -19,11 +19,20 @@ export const getFakeUsers = async () => {
   }
 };
 
-export const checkFakePassword = (username, password, fakeUsers) => {
-  for (const user of fakeUsers) {
+export const checkPassword = (username, password, users) => {
+  for (const user of users) {
     if (user.username === username && user.password === password) {
       return true;
     }
   }
   return false;
+};
+
+export const getUserInfo = (username, users) => {
+  for (let user of users) {
+    if (user.username === username) {
+      return user;
+    }
+  }
+  return null;
 };

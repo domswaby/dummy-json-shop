@@ -5,11 +5,15 @@ import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 import { login } from "../Auth/AuthService.js";
 import { Link } from "react-router-dom";
-import { isFakeUser, getFakeUsers } from "../../Services/UserService.js";
+import {
+  isFakeUser,
+  getFakeUsers,
+  getUserInfo,
+} from "../../Services/UserService.js";
 import "./Login.css";
 
 const Login = () => {
-  const { userInfo } = useContext(AppContext);
+  const { userInfo, newUsers, setUserInfo } = useContext(AppContext);
   const [fakeUsers, setFakeUsers] = useState([]);
   const [loadingFakes, setLoadingFakes] = useState(true);
   const [selectedName, setSelectedName] = useState(""); // New state for selected name
@@ -19,27 +23,69 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try {
-      const response = await fetch("https://dummyjson.com/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+    // if the user is entering their own credentials
+    if (selectedName === "clearInputs") {
+      try {
+        const response = await fetch("https://dummyjson.com/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        });
 
-      if (response.ok) {
-        // const data = await response.json();
-        // const { jwt } = data;
-        // localStorage.setItem("jwtToken", jwt);
-
-        navigate("/dashboard");
-      } else {
-        setError("Authentication failed. Please check your credentials."); // Set the error message
+        if (response.ok) {
+          const newUserInfo = getUserInfo(username, newUsers);
+          if (newUserInfo === null) {
+            handleErrorMessage(
+              "Authentication failed. Please check your credentials."
+            );
+          } else {
+            setUserInfo(newUserInfo);
+            navigate("/dashboard");
+          }
+        } else {
+          handleErrorMessage(
+            "Authentication failed. Please check your credentials."
+          );
+        }
+      } catch (error) {
+        handleErrorMessage("An error occurred. Please try again later.");
       }
-    } catch (error) {
-      setError("An error occurred. Please try again later."); // Set the error message
     }
+    // user is using dummy user credentials
+    else {
+      try {
+        const response = await fetch("https://dummyjson.com/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: "atuny0", password: "9uQFF1Lh" }),
+        });
+
+        if (response.ok) {
+          const responseData = await response.json(); // Parse response body as JSON
+          console.log("it worked!");
+          console.log(responseData); // Access the parsed JSON data
+          setUserInfo(responseData); // Assuming responseData contains user info
+          navigate("/dashboard");
+        } else {
+          handleErrorMessage(
+            "Authentication failed. Please check your credentials."
+          ); // Set the error message
+        }
+      } catch (error) {
+        handleErrorMessage("An error occurred. Please try again later.");
+      }
+    }
+  };
+
+  const handleErrorMessage = (newErrorMessage) => {
+    setError(newErrorMessage);
+    setTimeout(() => {
+      setError("");
+    }, 1000);
   };
 
   const handleNameChange = (e) => {
@@ -58,6 +104,7 @@ const Login = () => {
         setPassword(selectedUser.password);
       }
     }
+    console.log(selectedValue);
   };
 
   const initializeFakeUsers = async () => {

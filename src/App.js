@@ -22,7 +22,14 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Home />}></Route>
-        <Route path="dashboard" element={<Dashboard />}></Route>
+        <Route
+          path="dashboard"
+          element={
+            <AuthGuard>
+              <Dashboard />
+            </AuthGuard>
+          }
+        ></Route>
         {/* <Route path="/account/:accountId" element={<Account />}></Route> */}
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
