@@ -15,10 +15,9 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import { AppContext } from "./Contexts/AppContext";
+import { AppContextProvider } from "./Contexts/AppContext";
 
 function App() {
-  const [loggedInUsername, setLoggedInUsername] = useState("Dominic");
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
@@ -33,11 +32,11 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ loggedInUsername }}>
+      <AppContextProvider>
         <div className="App-container">
           <RouterProvider router={router} />
         </div>
-      </AppContext.Provider>
+      </AppContextProvider>
     </div>
   );
 }

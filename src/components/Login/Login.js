@@ -5,7 +5,7 @@ import { login } from "../Auth/AuthService.js";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { loggedInUsername } = useContext(AppContext);
+  const { userInfo } = useContext(AppContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <div>
-      <h1 className="signup-header">Login- {loggedInUsername}</h1>
+      <h1 className="signup-header">Login - {userInfo?.username}</h1>
       <input
         type="text"
         placeholder="Username"
