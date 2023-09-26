@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 import { login } from "../Auth/AuthService.js";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const { loggedInUsername } = useContext(AppContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // State to hold the error message
@@ -34,7 +37,7 @@ const Login = () => {
 
   return (
     <div>
-      <h1 className="signup-header">Login</h1>
+      <h1 className="signup-header">Login- {loggedInUsername}</h1>
       <input
         type="text"
         placeholder="Username"
