@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const { userInfo } = useContext(AppContext);
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // State to hold the error message
@@ -14,7 +13,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:8080/authenticate", {
+      const response = await fetch("https://dummyjson.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,9 +22,10 @@ const Login = () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        const { jwt } = data;
-        localStorage.setItem("jwtToken", jwt);
+        // const data = await response.json();
+        // const { jwt } = data;
+        // localStorage.setItem("jwtToken", jwt);
+
         navigate("/dashboard");
       } else {
         setError("Authentication failed. Please check your credentials."); // Set the error message

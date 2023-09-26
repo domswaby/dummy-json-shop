@@ -4,10 +4,12 @@ import { createContext } from "react";
 export const AppContext = createContext(null);
 
 export const AppContextProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState({ username: "Dominic123" });
+  const [userInfo, setUserInfo] = useState({});
+  const [newUserCount, setNewUserCount] = useState(0);
 
   const value = {
     userInfo,
+    setUserInfo,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

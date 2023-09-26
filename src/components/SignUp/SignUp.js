@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import { AppContext } from "../../Contexts/AppContext.js";
+import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const SignUp = () => {
-  const [fullName, setFullName] = useState("");
+  const { setUserInfo, newUserCount, setNewUserCount } = useContext(AppContext);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -11,20 +14,29 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/customer", {
+      const response = await fetch("https://dummyjson.com/users/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          fullName,
+          firstName,
+          lastName,
           username,
           password,
-          role: "ROLE_USER", // Hardcoded as ROLE_USER
         }),
       });
 
       if (response.ok) {
+        setNewUserCount((cur) => cur + 1);
+        let newUser = {
+          firstName,
+          lastName,
+          username,
+          password,
+          id: 100 + newUserCount,
+        };
+        setUserInfo(newUser);
         setSuccessMessage("Sign up successful. You can now log in.");
         setErrorMessage("");
       } else {
@@ -42,8 +54,13 @@ const SignUp = () => {
       <h1 className="signup-header">Sign Up</h1>
       <input
         type="text"
-        placeholder="Full Name"
-        onChange={(e) => setFullName(e.target.value)}
+        placeholder="First Name"
+        onChange={(e) => setFirstName(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Last Name"
+        onChange={(e) => setLastName(e.target.value)}
       />
       <input
         type="text"
@@ -58,11 +75,15 @@ const SignUp = () => {
       <div className="signup-btn">
         <button onClick={handleSignUp}>Sign Up</button>
       </div>
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+      {successMessage && (
+        <>
+          <p style={{ color: "green" }}>{successMessage}</p>
+          <p>
+            <Link to="/login">Log in</Link>
+          </p>
+        </>
+      )}
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      <p>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
       <p>
         <Link to="/">Go back home</Link>
       </p>
