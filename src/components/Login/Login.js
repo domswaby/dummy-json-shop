@@ -1,12 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 import { login } from "../Auth/AuthService.js";
 import { Link } from "react-router-dom";
-import { isFakeUser, fakeUsers } from "../../Services/UserService.js";
+import { isFakeUser, getFakeUsers } from "../../Services/UserService.js";
+import "./Login.css";
 
 const Login = () => {
   const { userInfo } = useContext(AppContext);
+  const [fakeUsers, setFakeUsers] = useState([]);
+  const [loadingFakes, setLoadingFakes] = useState(true);
   const [selectedName, setSelectedName] = useState(""); // New state for selected name
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -55,11 +60,35 @@ const Login = () => {
     }
   };
 
+  const initializeFakeUsers = async () => {
+    try {
+      let newFakeUsers = await getFakeUsers();
+      console.log(newFakeUsers.users[0]);
+
+      // Simulate a delay of 2 seconds (2000 milliseconds)
+      setTimeout(() => {
+        setFakeUsers(newFakeUsers.users);
+        setLoadingFakes(false);
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+      // Handle any error that may occur during the data fetching or state update.
+    }
+  };
+
+  useEffect(() => {
+    initializeFakeUsers();
+  }, []);
+
   return (
     <div>
       <h1 className="signup-header">Login - {userInfo?.username}</h1>
-      <select value={selectedName} onChange={handleNameChange}>
-        <option value="clearInputs">Select a Name</option>{" "}
+      <select
+        value={selectedName}
+        onChange={handleNameChange}
+        disabled={loadingFakes}
+      >
+        <option value="clearInputs">Select a name</option>{" "}
         {/* Add a clear option */}
         {fakeUsers.map((user) => (
           <option key={user.id} value={user.username}>
@@ -90,6 +119,14 @@ const Login = () => {
       <p>
         <Link to="/">Go back home</Link>
       </p>
+      {loadingFakes && (
+        <div className="fake-users-progress-wrap">
+          <p class="loading-background-text">Loading fake users...</p>
+          <Box className="fake-users-progress">
+            <CircularProgress color="secondary" size={100} />
+          </Box>
+        </div>
+      )}
     </div>
   );
 };
