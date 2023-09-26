@@ -3,9 +3,11 @@ import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 import { login } from "../Auth/AuthService.js";
 import { Link } from "react-router-dom";
+import { isFakeUser, fakeUsers } from "../../Services/UserService.js";
 
 const Login = () => {
   const { userInfo } = useContext(AppContext);
+  const [selectedName, setSelectedName] = useState(""); // New state for selected name
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // State to hold the error message
@@ -35,17 +37,46 @@ const Login = () => {
     }
   };
 
+  const handleNameChange = (e) => {
+    const selectedValue = e.target.value;
+    setSelectedName(selectedValue);
+
+    if (selectedValue === "clearInputs") {
+      setUsername("");
+      setPassword("");
+    } else {
+      const selectedUser = fakeUsers.find(
+        (user) => user.username === selectedValue
+      );
+      if (selectedUser) {
+        setUsername(selectedUser.username);
+        setPassword(selectedUser.password);
+      }
+    }
+  };
+
   return (
     <div>
       <h1 className="signup-header">Login - {userInfo?.username}</h1>
+      <select value={selectedName} onChange={handleNameChange}>
+        <option value="clearInputs">Select a Name</option>{" "}
+        {/* Add a clear option */}
+        {fakeUsers.map((user) => (
+          <option key={user.id} value={user.username}>
+            {user.firstName} {user.lastName}
+          </option>
+        ))}
+      </select>
       <input
         type="text"
         placeholder="Username"
+        value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
         type="password"
         placeholder="Password"
+        value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
       <div className="signup-btn">

@@ -702,8 +702,17 @@ export const fakeUsers = [
 ];
 
 export const isFakeUser = (username) => {
-  for (user of fakeUsers) {
+  for (const user of fakeUsers) {
     if (user.username === username) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const checkFakePassword = (username, password) => {
+  for (const user of fakeUsers) {
+    if (user.username === username && user.password === password) {
       return true;
     }
   }
