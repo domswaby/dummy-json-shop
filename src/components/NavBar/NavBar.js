@@ -30,7 +30,10 @@ const NavBar = ({ links }) => {
       <Toolbar>
         {isMatch ? (
           <>
-            <DrawerComp />
+            <Typography>
+              <StoreIcon />
+            </Typography>
+            <DrawerComp links={links} />
           </>
         ) : (
           <Grid sx={{ placeItems: "center" }} container>
