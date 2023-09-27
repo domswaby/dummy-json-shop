@@ -8,6 +8,7 @@ import {
   Outlet,
   RouterProvider,
 } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
 import AuthGuard from "./components/Auth/AuthGuard.js";
 import UnAuthGuard from "./components/Auth/UnAuthGuard";
 import Home from "./components/Home/Home";
@@ -38,8 +39,9 @@ function App() {
   );
 
   return (
-    <div className="App">
+    <div>
       <AppContextProvider>
+        <NavBar />
         <div className="App-container">
           <RouterProvider router={router} />
         </div>

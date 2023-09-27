@@ -7,6 +7,7 @@ export const AppContextProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [newUserCount, setNewUserCount] = useState(0);
   const [newUsers, setNewUsers] = useState([]);
+  const [isRealUser, setIsRealUser] = useState(false);
 
   const value = {
     userInfo,

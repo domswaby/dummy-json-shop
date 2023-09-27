@@ -13,7 +13,8 @@ import {
 import "./Login.css";
 
 const Login = () => {
-  const { userInfo, newUsers, setUserInfo } = useContext(AppContext);
+  const { userInfo, newUsers, setUserInfo, setIsRealUser } =
+    useContext(AppContext);
   const [fakeUsers, setFakeUsers] = useState([]);
   const [loadingFakes, setLoadingFakes] = useState(true);
   const [selectedName, setSelectedName] = useState(""); // New state for selected name
@@ -23,7 +24,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // if the user is entering their own credentials
+    // if the user is using their own credentials
     if (selectedName === "clearInputs" || selectedName === "") {
       console.log("own credentials option");
       try {
@@ -45,6 +46,7 @@ const Login = () => {
               "Authentication failed. Please check your credentials."
             );
           } else {
+            setIsRealUser(true);
             setUserInfo(newUserInfo);
             navigate("/dashboard");
           }
@@ -58,7 +60,7 @@ const Login = () => {
         handleErrorMessage("An error occurred. Please try again later.");
       }
     }
-    // user is using dummy user credentials
+    // if the user is using dummy user credentials
     else {
       try {
         const response = await fetch("https://dummyjson.com/auth/login", {
@@ -73,6 +75,7 @@ const Login = () => {
           const responseData = await response.json(); // Parse response body as JSON
           console.log("it worked!");
           console.log(responseData); // Access the parsed JSON data
+          setIsRealUser(false);
           setUserInfo(responseData); // Assuming responseData contains user info
           navigate("/dashboard");
         } else {
