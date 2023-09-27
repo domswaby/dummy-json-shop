@@ -24,19 +24,23 @@ const Login = () => {
 
   const handleLogin = async () => {
     // if the user is entering their own credentials
-    if (selectedName === "clearInputs") {
+    if (selectedName === "clearInputs" || selectedName === "") {
+      console.log("own credentials option");
       try {
         const response = await fetch("https://dummyjson.com/auth/login", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "kminchelle",
+            password: "0lelplR",
+            // expiresInMins: 60, // optional
+          }),
         });
 
         if (response.ok) {
           const newUserInfo = getUserInfo(username, newUsers);
           if (newUserInfo === null) {
+            console.log("user info is null");
             handleErrorMessage(
               "Authentication failed. Please check your credentials."
             );
@@ -45,6 +49,7 @@ const Login = () => {
             navigate("/dashboard");
           }
         } else {
+          console.log("bad request");
           handleErrorMessage(
             "Authentication failed. Please check your credentials."
           );
@@ -61,7 +66,7 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ username: "atuny0", password: "9uQFF1Lh" }),
+          body: JSON.stringify({ username, password }),
         });
 
         if (response.ok) {
@@ -124,6 +129,7 @@ const Login = () => {
   };
 
   useEffect(() => {
+    console.log(newUsers);
     initializeFakeUsers();
   }, []);
 
@@ -168,7 +174,7 @@ const Login = () => {
       </p>
       {loadingFakes && (
         <div className="fake-users-progress-wrap">
-          <p class="loading-background-text">Loading fake users...</p>
+          <p className="loading-background-text">Loading fake users...</p>
           <Box className="fake-users-progress">
             <CircularProgress color="secondary" size={100} />
           </Box>

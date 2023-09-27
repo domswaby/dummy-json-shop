@@ -3,7 +3,8 @@ import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const SignUp = () => {
-  const { setUserInfo, newUserCount, setNewUserCount } = useContext(AppContext);
+  const { newUserCount, setNewUserCount, newUsers, setNewUsers } =
+    useContext(AppContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -36,7 +37,7 @@ const SignUp = () => {
           password,
           id: 100 + newUserCount,
         };
-        setUserInfo(newUser);
+        setNewUsers([...newUsers, newUser]);
         setSuccessMessage("Sign up successful. You can now log in.");
         setErrorMessage("");
       } else {

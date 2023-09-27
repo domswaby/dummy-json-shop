@@ -11,6 +11,8 @@ export const AppContextProvider = ({ children }) => {
   const value = {
     userInfo,
     setUserInfo,
+    newUserCount,
+    setNewUserCount,
     newUsers,
     setNewUsers,
   };
