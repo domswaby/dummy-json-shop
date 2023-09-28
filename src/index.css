@@ -3,6 +3,7 @@
   --my-purple-2: rgba(105, 0, 161, 1);
   --my-blue-1: rgba(49, 49, 116, 1);
   --my-red-1: rgba(180, 58, 58, 1);
+  --my-background: rgb(247, 245, 240);
 }
 /* linear-gradient(90deg, rgba(180,58,58,1) 2%, rgba(49,49,116,1) 36%, rgba(105,0,161,1) 73%, rgba(166,69,252,1) 100%) */
 
@@ -13,6 +14,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(247, 245, 240);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 code {

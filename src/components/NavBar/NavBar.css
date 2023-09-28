@@ -1,6 +1,14 @@
 .my-store-icon:hover {
   color: white;
 }
+
+.my-nav-btn {
+  background: none;
+}
+
+.my-nav-btn:hover {
+  background: black;
+}
 .my-nav-btn > a {
   color: white;
   text-decoration: none;

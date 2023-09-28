@@ -1,0 +1,7 @@
+.shop-container {
+  position: relative;
+  max-width: 1350px;
+  width: 100%;
+  padding: 20px;
+  margin: 50px auto;
+}

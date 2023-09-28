@@ -149,20 +149,22 @@ const Login = () => {
           <p className="dummy-shopper-span-wrap">
             Select a <span className="dummy-shopper-span">dummy shopper:</span>
           </p>
-          <select
-            className="user-select"
-            value={selectedName}
-            onChange={handleNameChange}
-            disabled={loadingFakes}
-          >
-            <option value="clearInputs">Select Someone</option>{" "}
-            {/* Add a clear option */}
-            {fakeUsers.map((user) => (
-              <option key={user.id} value={user.username}>
-                {user.firstName} {user.lastName}
-              </option>
-            ))}
-          </select>
+          <div className="select-wrap">
+            <select
+              className="user-select"
+              value={selectedName}
+              onChange={handleNameChange}
+              disabled={loadingFakes}
+            >
+              <option value="clearInputs">Select Someone</option>{" "}
+              {/* Add a clear option */}
+              {fakeUsers.map((user) => (
+                <option key={user.id} value={user.username}>
+                  {user.firstName} {user.lastName}
+                </option>
+              ))}
+            </select>
+          </div>
           <p className="dummy-shopper-span-wrap">
             Or use <span className="dummy-shopper-span">your credentials:</span>
           </p>

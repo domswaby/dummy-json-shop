@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "DummyFont";
+  src: url("../../../public/fonts/Rumpelstiltskin-EPdj.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main-title {
+  font-family: "DummyFont";
+  color: var(--my-purple-2);
+  text-align: center;
+}
+
+.home-wrap {
+  
+  margin: 0; 
+}

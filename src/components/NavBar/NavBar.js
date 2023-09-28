@@ -69,14 +69,14 @@ const NavBar = () => {
                 <Button
                   className="my-nav-btn"
                   to="/login"
-                  sx={{ marginLeft: "auto", background: "rgba(180,58,58,1)" }}
+                  sx={{ marginLeft: "auto", background: "none" }}
                   variant="contained"
                 >
                   <Link to="/login">Login</Link>
                 </Button>
                 <Button
                   className="my-nav-btn"
-                  sx={{ marginLeft: 1, background: "rgba(180,58,58,1)" }}
+                  sx={{ marginLeft: 1, background: "none" }}
                   variant="contained"
                 >
                   <Link to="/signup">Signup</Link>

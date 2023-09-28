@@ -1,6 +1,8 @@
 import { AppContext } from "../../Contexts/AppContext.js";
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import NavBar from "../NavBar/NavBar.js";
+import "../Login/Login.css";
 
 const SignUp = () => {
   const { newUserCount, setNewUserCount, newUsers, setNewUsers } =
@@ -51,44 +53,65 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <h1 className="signup-header">Sign Up</h1>
-      <input
-        type="text"
-        placeholder="First Name"
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Last Name"
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <div className="signup-btn">
-        <button onClick={handleSignUp}>Sign Up</button>
-      </div>
-      {successMessage && (
-        <>
-          <p style={{ color: "green" }}>{successMessage}</p>
-          <p>
-            <Link to="/login">Log in</Link>
+    <>
+      <NavBar />
+      <div className="auth-container">
+        <h1 className="signup-header">Sign Up</h1>
+        <div className="auth-form">
+          <p className="dummy-shopper-span-wrap">
+            You're almost <span className="dummy-shopper-span">shopping!</span>
           </p>
-        </>
-      )}
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      <p>
-        <Link to="/">Go back home</Link>
-      </p>
-    </div>
+          <div className="auth-input-wrap">
+            <input
+              className="auth-input"
+              type="text"
+              placeholder="First Name"
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <div className="auth-form"></div>
+            <div>
+              <input
+                className="auth-input"
+                type="text"
+                placeholder="Last Name"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <div>
+              <input
+                className="auth-input"
+                type="text"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div>
+              <input
+                className="auth-input"
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="auth-btn">
+            <button onClick={handleSignUp}>Sign Up</button>
+          </div>
+          {successMessage && (
+            <>
+              <p style={{ color: "green" }}>{successMessage}</p>
+              <p>
+                <Link to="/login">Log in</Link>
+              </p>
+            </>
+          )}
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          <p>
+            <Link to="/">Go back home</Link>
+          </p>
+        </div>
+      </div>
+    </>
   );
 };
 
