@@ -6,7 +6,7 @@ import { AppContext } from "../../Contexts/AppContext";
 const Dashboard = () => {
   const { userInfo } = useContext(AppContext);
 
-  return <div>{/* {userInfo?.username} */}</div>;
+  return <div>{userInfo?.username}</div>;
 };
 
 export default Dashboard;

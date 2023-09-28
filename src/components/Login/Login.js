@@ -5,6 +5,7 @@ import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
 import { login } from "../Auth/AuthService.js";
 import { Link } from "react-router-dom";
+import NavBar from "../NavBar/NavBar.js";
 import {
   isFakeUser,
   getFakeUsers,
@@ -76,7 +77,9 @@ const Login = () => {
           console.log("it worked!");
           console.log(responseData); // Access the parsed JSON data
           setIsRealUser(false);
+          console.log("set the real user");
           setUserInfo(responseData); // Assuming responseData contains user info
+          console.log("Set the data");
           navigate("/dashboard");
         } else {
           handleErrorMessage(
@@ -84,6 +87,7 @@ const Login = () => {
           ); // Set the error message
         }
       } catch (error) {
+        console.log("came into the error block");
         handleErrorMessage("An error occurred. Please try again later.");
       }
     }
@@ -137,53 +141,77 @@ const Login = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="signup-header">Login - {userInfo?.username}</h1>
-      <select
-        value={selectedName}
-        onChange={handleNameChange}
-        disabled={loadingFakes}
-      >
-        <option value="clearInputs">Select a name</option>{" "}
-        {/* Add a clear option */}
-        {fakeUsers.map((user) => (
-          <option key={user.id} value={user.username}>
-            {user.firstName} {user.lastName}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <div className="signup-btn">
-        <button onClick={handleLogin}>Login</button>
-      </div>
-      {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-      {/* Display the error message if it exists */}
-      <p>
-        Don't have an account yet? <Link to="/signup">Sign up</Link>
-      </p>
-      <p>
-        <Link to="/">Go back home</Link>
-      </p>
-      {loadingFakes && (
-        <div className="fake-users-progress-wrap">
-          <p className="loading-background-text">Loading fake users...</p>
-          <Box className="fake-users-progress">
-            <CircularProgress color="secondary" size={100} />
-          </Box>
+    <>
+      <NavBar />
+      <div className="auth-container">
+        <h1 className="signup-header">Login {userInfo?.username}</h1>
+        <div className="auth-form">
+          <p className="dummy-shopper-span-wrap">
+            Select a <span className="dummy-shopper-span">dummy shopper:</span>
+          </p>
+          <select
+            className="user-select"
+            value={selectedName}
+            onChange={handleNameChange}
+            disabled={loadingFakes}
+          >
+            <option value="clearInputs">Select Someone</option>{" "}
+            {/* Add a clear option */}
+            {fakeUsers.map((user) => (
+              <option key={user.id} value={user.username}>
+                {user.firstName} {user.lastName}
+              </option>
+            ))}
+          </select>
+          <p className="dummy-shopper-span-wrap">
+            Or use <span className="dummy-shopper-span">your credentials:</span>
+          </p>
+          <div className="auth-input-wrap">
+            <div>
+              <input
+                className="auth-input"
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div>
+              <input
+                className="auth-input"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="auth-btn">
+            <button onClick={handleLogin}>Login</button>
+          </div>
+          {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+          {/* Display the error message if it exists */}
         </div>
-      )}
-    </div>
+        {loadingFakes && (
+          <div className="progress-container">
+            <div className="fake-users-progress-wrap">
+              <p className="loading-background-text">Loading fake users...</p>
+              <Box className="fake-users-progress">
+                <CircularProgress color="secondary" size={100} />
+              </Box>
+            </div>
+          </div>
+        )}
+        <div className="auth-footer">
+          <p>
+            Don't have an account yet? <Link to="/signup">Sign up</Link>
+          </p>
+          <p>
+            <Link to="/">Go home</Link>
+          </p>
+        </div>
+      </div>
+    </>
   );
 };
 

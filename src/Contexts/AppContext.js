@@ -16,6 +16,8 @@ export const AppContextProvider = ({ children }) => {
     setNewUserCount,
     newUsers,
     setNewUsers,
+    isRealUser,
+    setIsRealUser,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

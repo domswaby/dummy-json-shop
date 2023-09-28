@@ -18,8 +18,6 @@ import SignUp from "./components/SignUp/SignUp";
 import { AppContext } from "./Contexts/AppContext";
 import { AppContextProvider } from "./Contexts/AppContext";
 
-const linksArray = ["Cart", "Shop"];
-
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -43,7 +41,6 @@ function App() {
   return (
     <div>
       <AppContextProvider>
-        <NavBar links={linksArray} />
         <div className="App-container">
           <RouterProvider router={router} />
         </div>

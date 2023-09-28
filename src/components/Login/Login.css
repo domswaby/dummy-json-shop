@@ -1,10 +1,22 @@
+.progress-container {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1500;
+  background-color: rgb(128, 128, 128, 0.8);
+}
+
 .fake-users-progress-wrap {
   text-align: center;
   position: relative;
   letter-spacing: 2px;
   font-weight: 700;
-  font-size: 1.3rem;
-  
+  font-size: 5rem;
 }
 
 .fake-users-progress {
@@ -13,9 +25,7 @@
   justify-content: center;
 }
 .loading-background-text {
-  z-index: 0;
   opacity: 0.5;
-  
   position: absolute;
   top: 0;
   left: 0;
@@ -24,4 +34,108 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.signup-header {
+  text-align: center;
+  padding: 1rem 0 1rem 0;
+  font-size: 3rem;
+  color: var(--my-purple-1);
+  font-weight: 300;
+  position: relative;
+  width: 40%;
+  margin: 0 auto;
+}
+.signup-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.5rem; /* Adjust this value to control the height of the gradient border */
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(180, 58, 58, 1) 2%,
+    rgba(49, 49, 116, 1) 36%,
+    rgba(105, 0, 161, 1) 73%,
+    rgba(166, 69, 252, 1) 100%
+  );
+  z-index: 1;
+}
+.dummy-shopper-span-wrap {
+  font-size: 1.8rem;
+  text-align: center;
+}
+.dummy-shopper-span {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--my-purple-1);
+}
+.auth-form {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.user-select {
+  margin: 0 auto;
+  border: 1px solid var(--my-purple-2);
+  border-radius: 30px;
+  color: rgb(191, 186, 192, 0.95);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+.user-select:hover {
+  cursor: pointer;
+}
+.user-select:focus {
+  outline-color: var(--my-purple-1);
+}
+.or {
+  text-align: center;
+  margin: 2rem 0 2rem 0;
+}
+.auth-input-wrap {
+  width: 100%;
+}
+.auth-input {
+  height: 40px;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  color: rgb(142, 54, 160);
+  border: 5px solid rgb(142, 54, 160);
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+.auth-footer {
+  text-align: center;
+}
+.auth-btn {
+  margin-top: 4rem;
+}
+.auth-btn > button {
+  padding: 1rem 0 1rem 0;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(180, 58, 58, 0.4) 2%,
+    rgba(49, 49, 116, 0.4) 36%,
+    rgba(105, 0, 161, 0.4) 73%,
+    rgba(166, 69, 252, 0.4) 100%
+  );
+  color: rgb(255, 255, 255, 0.4);
+  font-size: 1.2rem;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out,
+    letter-spacing 0.2s ease-in-out;
+}
+
+.auth-btn > button:hover {
+  cursor: pointer;
+  background-color: var(--my-purple-2);
+  color: rgb(255, 255, 255, 1);
+  letter-spacing: 2px;
 }
