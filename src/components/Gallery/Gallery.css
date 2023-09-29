@@ -12,6 +12,12 @@
   padding: 3px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 .card img {

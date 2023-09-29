@@ -4,11 +4,16 @@ import Gallery from "../Gallery/Gallery";
 import { Box } from "@mui/material";
 import Search from "./Search/Search";
 import Paginator from "./Paginator/Paginator";
+import LoginModal from "./LoginModal/LoginModal";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Shop = ({ myRef }) => {
+  const navigate = useNavigate();
   const isInitialMount1 = useRef(true);
   const isInitialMount2 = useRef(true);
+
+  const [openModal, setOpenModal] = useState(false);
 
   const [curatedPage, setCuratedPage] = useState(1);
   const [searchedPage, setSearchedPage] = useState(1);
@@ -138,6 +143,20 @@ const Shop = ({ myRef }) => {
     }
   }, [category]);
 
+  const handleOnLogin = () => {
+    setOpenModal(false);
+    navigate("/login");
+  };
+
+  const handleOnSignUp = () => {
+    setOpenModal(false);
+    navigate("/signup");
+  };
+
+  const handleOnClose = () => {
+    setOpenModal(false);
+  };
+
   // get categories on initial render
   useEffect(() => {
     getCategories();
@@ -145,6 +164,13 @@ const Shop = ({ myRef }) => {
 
   return (
     <div className="shop-container">
+      <LoginModal
+        open={openModal}
+        onClose={handleOnClose}
+        handleOnClose={handleOnClose}
+        handleOnSignUp={handleOnSignUp}
+        handleOnLogin={handleOnLogin}
+      />
       <Search
         categories={categories}
         category={category}
@@ -160,7 +186,11 @@ const Shop = ({ myRef }) => {
             : `Curated feed page ${curatedPage}:`}
         </span>
       </Box>
-      <Gallery products={products} loading={loading} />
+      <Gallery
+        products={products}
+        loading={loading}
+        setOpenModal={setOpenModal}
+      />
       <Paginator
         search={search}
         curatedPage={curatedPage}

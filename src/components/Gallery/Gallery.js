@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../../Contexts/AppContext";
 import "./Gallery.css";
+import { useNavigate } from "react-router-dom";
 
-const Gallery = ({ products, loading }) => {
-  // const picsArray = [
-  //   "https://source.unsplash.com/Kl1gC0ve620",
-  //   "https://source.unsplash.com/55btQzyDiO8",
-  //   "https://source.unsplash.com/g0dBbrGmMe0",
-  //   "https://source.unsplash.com/v1OW17UcR-Q",
-  //   "https://source.unsplash.com/Wpg3Qm0zaGk",
-  //   "https://source.unsplash.com/W3FC_bCPw8E",
-  //   "https://source.unsplash.com/rBRZLPVLQg0",
-  //   "https://source.unsplash.com/RRksEVVoU8o",
-  // ];
+const Gallery = ({ products, loading, setOpenModal }) => {
+  const navigate = useNavigate();
+  const { userInfo } = useContext(AppContext);
 
-  // const [pics, setPics] = useState([]);
-
-  // useEffect(() => {
-  //   setPics(picsArray);
-  // }, []);
+  const handleCardClick = () => {
+    if (userInfo) {
+      navigate("/");
+    } else {
+      setOpenModal(true);
+    }
+  };
 
   return (
     <div className="filterable-cards">
       {products.map((product, index) => (
-        <div key={index} className="card">
+        <div
+          key={index}
+          className="card"
+          onClick={() => handleCardClick(product)}
+        >
           <img src={product.images[0]} alt={`Image ${index}`} />
           <div className="card-body">
             <h6 className="card-title">{product.title}</h6>

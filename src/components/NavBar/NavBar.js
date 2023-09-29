@@ -52,16 +52,17 @@ const NavBar = () => {
               </Typography>
             </Grid>
             <Grid xs={6}>
-              <Tabs
+              <p></p>
+              {/* <Tabs
                 indicatorColor="secondary"
                 textColor="inherit"
                 value={value}
                 onChange={(e, val) => setValue(val)}
               >
                 {links.map((link, index) => (
-                  <Tab key={index} label={link} />
+                  <Tab key={index} label={link} /> 
                 ))}
-              </Tabs>
+              </Tabs> */}
             </Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={3}>
