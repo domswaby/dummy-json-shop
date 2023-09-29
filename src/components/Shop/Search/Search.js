@@ -47,9 +47,9 @@ const Search = ({
 
   return (
     <>
-      <div>
+      <div className="category-select-wrap">
         <select onChange={handleCategoryChange} value={category}>
-          <option value="">Select a category</option>
+          <option value="">Category</option>
           {categories.map((categoryOption, index) => (
             <option key={index} value={categoryOption}>
               {categoryOption}
@@ -58,6 +58,7 @@ const Search = ({
         </select>
       </div>
       <CssTextField
+        className="search-input"
         label={"🔍 Search " + (category ? category : "products")}
         type="search"
         id="custom-css-outlined-input"

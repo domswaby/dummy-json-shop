@@ -3,9 +3,9 @@
   max-width: 1350px;
   width: 100%;
   padding: 20px;
-  margin: 50px auto;
+  margin: 1rem auto 50px auto;
 }
 
-.pagination-stack{
-    margin-top: 2rem;
+.pagination-stack {
+  margin-top: 2rem;
 }
