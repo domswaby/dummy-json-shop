@@ -197,7 +197,9 @@ const Login = () => {
         {loadingFakes && (
           <div className="progress-container">
             <div className="fake-users-progress-wrap">
-              <p className="loading-background-text">Loading fake users...</p>
+              <p className="loading-background-text">
+                Loading Dummy Shoppers...
+              </p>
               <Box className="fake-users-progress">
                 <CircularProgress color="secondary" size={100} />
               </Box>
