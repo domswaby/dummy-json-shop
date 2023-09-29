@@ -1,0 +1,10 @@
+.search-input {
+  width: 100%;
+  color: black;
+  border-color: black;
+}
+
+.search-input:focus {
+  color: black;
+  border-color: black;
+}
