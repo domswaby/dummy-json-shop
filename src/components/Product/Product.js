@@ -34,7 +34,6 @@ const Product = () => {
       console.error("Error fetching product:", error);
     }
   };
-
   const onAddToCart = () => {
     // show error if quantity is less than 1
     if (quantity < 1) {
@@ -43,42 +42,100 @@ const Product = () => {
         setShowMinQuantityMessage(false);
       }, 3000);
     } else {
-      // You can use the quantity value here as needed
       let userCart = cart[userInfo.id];
       let cartProduct = getProductFromCart(product.id, userCart);
       let cartDidntExist = cartProduct ? false : true;
+
       if (cartProduct === null) {
-        cartProduct = product;
+        // Create a new product object with initial values
+        cartProduct = {
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          quantity: 0, // Initialize quantity to 0
+          total: 0, // Initialize total to 0
+        };
       }
-      let addTotal = Number(product.price) * quantity;
-      if (!("total" in cartProduct)) {
-        cartProduct["total"] = 0;
-      }
-      cartProduct["total"] += addTotal;
-      userCart.total += cartProduct["total"];
+
+      // Update cartProduct based on the quantity
+      cartProduct.quantity += quantity;
+      cartProduct.total = cartProduct.price * cartProduct.quantity;
+
+      // Update userCart
+      userCart.total += cartProduct.total;
+
+      // Apply discount if total exceeds 1000
       if (userCart.total > 1000) {
-        userCart["discountedTotal"] = userCart.total - userCart.total * 0.2;
+        userCart.discountedTotal = userCart.total - userCart.total * 0.2;
       }
 
-      if (!("quantity" in cartProduct)) {
-        cartProduct["quantity"] = 0;
-      }
-      cartProduct["quantity"] += quantity;
-      userCart["totalQuantity"] += cartProduct["quantity"];
-
-      userCart["totalProducts"] = userCart.products.length;
+      // Update totalQuantity and totalProducts
+      userCart.totalQuantity += quantity;
+      userCart.totalProducts = userCart.products.length;
 
       if (cartDidntExist) {
+        // Push the new cartProduct object to the products array
         userCart.products.push(cartProduct);
       } else {
-        userCart = updateUserCartProduct(userCart, cartProduct);
+        // Update the existing cartProduct in the products array
+        const updatedProducts = userCart.products.map((p) =>
+          p.id === cartProduct.id ? cartProduct : p
+        );
+        userCart.products = updatedProducts;
       }
+
+      // Update the cart state
       setCart({ ...cart, [userInfo.id]: userCart });
 
       console.log("Cart Updated successfully");
       console.log(userCart.products);
     }
   };
+
+  //   const onAddToCart = () => {
+  //     // show error if quantity is less than 1
+  //     if (quantity < 1) {
+  //       setShowMinQuantityMessage(true);
+  //       setTimeout(() => {
+  //         setShowMinQuantityMessage(false);
+  //       }, 3000);
+  //     } else {
+  //       // You can use the quantity value here as needed
+  //       let userCart = cart[userInfo.id];
+  //       let cartProduct = getProductFromCart(product.id, userCart);
+  //       let cartDidntExist = cartProduct ? false : true;
+  //       if (cartProduct === null) {
+  //         cartProduct = product;
+  //       }
+  //       let addTotal = Number(product.price) * quantity;
+  //       if (!("total" in cartProduct)) {
+  //         cartProduct["total"] = 0;
+  //       }
+  //       cartProduct["total"] += addTotal;
+  //       userCart.total += cartProduct["total"];
+  //       if (userCart.total > 1000) {
+  //         userCart["discountedTotal"] = userCart.total - userCart.total * 0.2;
+  //       }
+
+  //       if (!("quantity" in cartProduct)) {
+  //         cartProduct["quantity"] = 0;
+  //       }
+  //       cartProduct["quantity"] += quantity;
+  //       userCart["totalQuantity"] += cartProduct["quantity"];
+
+  //       userCart["totalProducts"] = userCart.products.length;
+
+  //       if (cartDidntExist) {
+  //         userCart.products.push(cartProduct);
+  //       } else {
+  //         userCart = updateUserCartProduct(userCart, cartProduct);
+  //       }
+  //       setCart({ ...cart, [userInfo.id]: userCart });
+
+  //       console.log("Cart Updated successfully");
+  //       console.log(userCart.products);
+  //     }
+  //   };
 
   useEffect(() => {
     // Call the fetchProductById function when the component mounts
