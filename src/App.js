@@ -16,6 +16,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Account from "./components/Account/Account";
+import Product from "./components/Product/Product";
 
 import { AppContext } from "./Contexts/AppContext";
 import { AppContextProvider } from "./Contexts/AppContext";
@@ -34,7 +35,7 @@ function App() {
             </AuthGuard>
           }
         ></Route>
-
+        <Route path="/product/:id" element={<Product />}></Route>
         <Route path="/account" element={<Account />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         {/* <Route path="/account/:accountId" element={<Account />}></Route> */}

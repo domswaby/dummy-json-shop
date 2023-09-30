@@ -1,12 +1,12 @@
 .filterable-cards {
   margin-top: 25px;
   display: flex;
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 
 .card {
-  flex-grow: 1;
   flex-basis: 300px;
   background-color: #fff;
   padding: 3px;
@@ -41,4 +41,10 @@
   font-size: 18px;
   font-weight: 500;
   color: #333;
+}
+
+@media (max-width: 800px) {
+  .card {
+    flex-grow: 1;
+  }
 }

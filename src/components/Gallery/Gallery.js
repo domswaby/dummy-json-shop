@@ -8,9 +8,9 @@ const Gallery = ({ products, loading, setOpenModal }) => {
   const navigate = useNavigate();
   const { userInfo } = useContext(AppContext);
 
-  const handleCardClick = () => {
+  const handleCardClick = (product) => {
     if (userInfo) {
-      navigate("/");
+      navigate(`/product/${product.id}`);
     } else {
       setOpenModal(true);
     }
@@ -22,7 +22,7 @@ const Gallery = ({ products, loading, setOpenModal }) => {
         <div
           key={index}
           className="card"
-          onClick={() => handleCardClick(product)}
+          onClick={(e) => handleCardClick(product)}
         >
           <img src={product.images[0]} alt={`Image ${index}`} />
           <div className="card-body">
