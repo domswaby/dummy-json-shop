@@ -22,6 +22,9 @@ import DrawerComp from "../Drawer/DrawerComp";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../Contexts/AppContext";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { Menu } from "@mui/material";
+import { MenuItem } from "@mui/material";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -30,6 +33,24 @@ const NavBar = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   const [value, setValue] = useState();
   const links = ["Cart", "Shop"];
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const onLogOut = () => {
+    setUserInfo(null);
+    navigate("/login");
+  };
 
   const logOutStyles = {
     marginLeft: "auto",
@@ -72,10 +93,15 @@ const NavBar = () => {
       backgroundColor: "rgba(0, 0, 0, 1)",
     },
   };
-
-  const onLogOut = () => {
-    setUserInfo(null);
-    navigate("/login");
+  const goToShop = () => {
+    navigate("/");
+    navigate("/");
+  };
+  const goToCart = () => {
+    navigate("/cart");
+  };
+  const goToAccount = () => {
+    navigate("/account");
   };
 
   return (
@@ -153,12 +179,44 @@ const NavBar = () => {
                     size="large"
                     aria-label="show 17 new notifications"
                     color="inherit"
+                    onClick={goToCart}
                   >
                     <Badge badgeContent={17} color="error">
                       <ShoppingCartIcon />
                     </Badge>
                   </IconButton>
                 </Box>
+                <div>
+                  <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={goToAccount}>My account</MenuItem>
+                    <MenuItem onClick={goToShop}>Shop</MenuItem>
+                    <MenuItem onClick={goToCart}>Cart</MenuItem>
+                  </Menu>
+                </div>
                 {/* <Button
                   className="my-nav-btn"
                   sx={{ marginLeft: 1, background: "none" }}
