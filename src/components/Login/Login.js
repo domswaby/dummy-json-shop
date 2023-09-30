@@ -80,7 +80,7 @@ const Login = () => {
           console.log("set the real user");
           setUserInfo(responseData); // Assuming responseData contains user info
           console.log("Set the data");
-          navigate("/dashboard");
+          navigate("/");
         } else {
           handleErrorMessage(
             "Authentication failed. Please check your credentials."
@@ -144,7 +144,7 @@ const Login = () => {
     <>
       <NavBar />
       <div className="auth-container">
-        <h1 className="signup-header">Login {userInfo?.username}</h1>
+        <h1 className="signup-header">Login</h1>
         <div className="auth-form">
           <p className="dummy-shopper-span-wrap">
             Select a <span className="dummy-shopper-span">dummy shopper:</span>

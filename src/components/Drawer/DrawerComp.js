@@ -20,7 +20,8 @@ const DrawerComp = ({ links, isMatch }) => {
         className="my-drawer"
         PaperProps={{
           sx: {
-            backgroundColor: "rgba(49,49,116,1)",
+            background:
+              "linear-gradient(180deg, rgba(180, 58, 58, 1) 2%, rgba(49, 49, 116, 1) 36%, rgba(105, 0, 161, 1) 73%, rgba(166, 69, 252, 1) 100%);",
             width: "65%",
           },
         }}

@@ -79,13 +79,13 @@
 }
 
 .btnNo {
-  border: 1rem solid rgb(255, 0, 0, 0.2);
-  color: rgb(255, 0, 0, 0.4);
+  border: 1rem solid rgb(0, 128, 0, 0.2);
+  color: rgb(0, 128, 0, 0.4);
   box-shadow: 5px 5px 5px 0px rgba(255, 255, 255, 0.2);
 }
 .btnNo:hover {
-  border: 1rem solid rgb(255, 0, 0, 1);
-  color: rgb(255, 0, 0, 1);
+  border: 1rem solid rgb(0, 128, 0, 1);
+  color: rgb(0, 128, 0, 1);
 }
 .btnYes:hover,
 .btnNo:hover {
