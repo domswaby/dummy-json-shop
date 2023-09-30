@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../Auth/AuthService.js";
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.js";
+import { cartFactory } from "../Product/CartFactory.js";
 import {
   isFakeUser,
   getFakeUsers,
@@ -14,7 +15,7 @@ import {
 import "./Login.css";
 
 const Login = () => {
-  const { userInfo, newUsers, setUserInfo, setIsRealUser } =
+  const { userInfo, newUsers, setUserInfo, setIsRealUser, setCart, cart } =
     useContext(AppContext);
   const [fakeUsers, setFakeUsers] = useState([]);
   const [loadingFakes, setLoadingFakes] = useState(true);
@@ -73,18 +74,48 @@ const Login = () => {
         });
 
         if (response.ok) {
-          const responseData = await response.json(); // Parse response body as JSON
-          console.log("it worked!");
-          console.log(responseData); // Access the parsed JSON data
+          const responseData = await response.json();
           setIsRealUser(false);
-          console.log("set the real user");
-          setUserInfo(responseData); // Assuming responseData contains user info
-          console.log("Set the data");
+          setUserInfo(responseData);
+          console.log("This is responseData" + responseData.id);
+          if (!(responseData.id in cart)) {
+            try {
+              const cartResponse = await fetch(
+                `https://dummyjson.com/carts/user/${responseData.id}`
+              );
+              if (cartResponse.ok) {
+                let newCart;
+                const cartData = await cartResponse.json();
+                if (cartData.carts.length === 0) {
+                  newCart = cartFactory();
+                  newCart.id = responseData.id;
+                  newCart.userId = responseData.id;
+                  console.log("Used the cart Factory in login");
+                  console.log(
+                    "factory create this cart: " + JSON.stringify(newCart)
+                  );
+                } else {
+                  newCart = cartData.carts[0];
+                  newCart.id = responseData.id;
+                }
+                console.log("This is the new cart" + JSON.stringify(newCart));
+                setCart({ ...cart, [responseData.id]: newCart });
+              } else {
+                console.error("Failed to fetch user's cart data.");
+              }
+            } catch (cartError) {
+              console.error(
+                "An error occurred while fetching user's cart data:",
+                cartError
+              );
+            }
+          }
+
           navigate("/");
         } else {
           handleErrorMessage(
             "Authentication failed. Please check your credentials."
-          ); // Set the error message
+          );
         }
       } catch (error) {
         console.log("came into the error block");

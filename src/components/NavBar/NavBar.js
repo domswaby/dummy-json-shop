@@ -28,7 +28,7 @@ import { MenuItem } from "@mui/material";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { userInfo, setUserInfo } = useContext(AppContext);
+  const { userInfo, setUserInfo, cart } = useContext(AppContext);
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   const [value, setValue] = useState();
@@ -181,7 +181,14 @@ const NavBar = () => {
                     color="inherit"
                     onClick={goToCart}
                   >
-                    <Badge badgeContent={17} color="error">
+                    <Badge
+                      badgeContent={
+                        userInfo && cart && cart[userInfo.id]
+                          ? cart[userInfo.id].products.length
+                          : 0
+                      }
+                      color="error"
+                    >
                       <ShoppingCartIcon />
                     </Badge>
                   </IconButton>

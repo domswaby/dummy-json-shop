@@ -8,6 +8,8 @@ export const AppContextProvider = ({ children }) => {
   const [newUserCount, setNewUserCount] = useState(0);
   const [newUsers, setNewUsers] = useState([]);
   const [isRealUser, setIsRealUser] = useState(false);
+  const [cart, setCart] = useState({});
+  const [justOrderedCart, setJustOrderedCart] = useState({});
 
   const value = {
     userInfo,
@@ -18,6 +20,8 @@ export const AppContextProvider = ({ children }) => {
     setNewUsers,
     isRealUser,
     setIsRealUser,
+    cart,
+    setCart,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
