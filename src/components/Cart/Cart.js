@@ -45,33 +45,38 @@ const Cart = () => {
     <div>
       <NavBar />
       <div className="cart-container">
-        <h2>Your Cart</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Action</th> {/* Add a new column for the Remove button */}
-            </tr>
-          </thead>
-          <tbody>
-            {cart[userInfo.id].products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.title}</td>
-                <td>${product.price}</td>
-                <td>{product.quantity}</td>
-                <td>${product.total}</td>
-                <td>
-                  <button onClick={() => removeItemFromCart(product.id)}>
-                    Remove
-                  </button>
-                </td>
+        <h2 className="cart-header">Your Cart</h2>
+        <div className="cart-table-wrap">
+          <table className="cart-table">
+            <thead>
+              <tr className="table-head-tr">
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th> {/* Add a new column for the Remove button */}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {cart[userInfo.id].products.map((product) => (
+                <tr key={product.id} className="table-body-tr">
+                  <td>{product.title}</td>
+                  <td>${product.price}</td>
+                  <td>{product.quantity}</td>
+                  <td>${product.total}</td>
+                  <td>
+                    <button
+                      className="delete-item-button"
+                      onClick={() => removeItemFromCart(product.id)}
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         {/* Display total and other cart information here */}
       </div>
     </div>

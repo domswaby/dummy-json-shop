@@ -1,0 +1,74 @@
+.cart-container {
+  padding: 10px;
+  text-align: center;
+}
+.cart-header {
+  text-align: center;
+  padding-bottom: 2rem;
+  font-size: 3rem;
+  font-family: "DummyFont";
+  color: var(--my-purple-1);
+}
+
+.cart-table-wrap {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.cart-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate; /* Separate border spacing */
+  border-spacing: 1rem 2rem; /* Add 10px vertical spacing between rows */
+}
+
+.table-head-tr {
+  font-size: 1.5rem;
+  font-family: "DummyFont";
+  padding: 0.5rem;
+}
+
+.table-body-tr {
+  margin-bottom: 5rem;
+  font-size: 1.2rem;
+}
+
+.delete-item-button {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(180, 58, 58, 0.5);
+  color: rgba(255, 255, 255, 0.3);
+  transition: border 0.2s ease-in-out, background 0.2s ease-in-out,
+    letter-spacing 0.2s ease-in-out;
+  font-weight: 700;
+  width: 100%;
+  padding: 10px 0 10px 0;
+}
+
+.delete-item-button:hover {
+  border: 2px solid rgba(255, 255, 255, 1);
+  background: 2px solid rgba(180, 58, 58, 1);
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .cart-table-wrap {
+    width: 100%;
+  }
+
+  .table-head-tr {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .table-body-tr {
+    font-size: 1rem;
+  }
+  .cart-container {
+    padding: 5px;
+  }
+  .cart-table {
+    border-spacing: 5px 5px;
+  }
+}
