@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../Contexts/AppContext";
 
 import {
   Drawer,
@@ -10,9 +11,18 @@ import {
 } from "@mui/material";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import "./Drawer.css";
+import { useNavigate } from "react-router-dom";
 
-const DrawerComp = ({ links, isMatch }) => {
+const DrawerComp = () => {
+  const { setUserInfo, userInfo } = useContext(AppContext);
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+
+  const handleOnLogOut = () => {
+    setOpen(false);
+    setUserInfo(null);
+    navigate("/login");
+  };
 
   return (
     <>
@@ -30,13 +40,53 @@ const DrawerComp = ({ links, isMatch }) => {
       >
         <List>
           <h1 className="drawer-header">Dummy JSON Shop</h1>
-          {links.map((link, idx) => (
-            <ListItemButton onClick={() => setOpen(false)} key={idx} divider>
-              <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
-                <ListItemText sx={{ color: "white" }}>{link}</ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
-          ))}
+          <ListItemButton onClick={() => navigate("/")} divider>
+            <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
+              <ListItemText sx={{ color: "white" }}>Shop</ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
+          {userInfo && (
+            <>
+              <ListItemButton onClick={() => navigate("/cart")} divider>
+                <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
+                  <ListItemText sx={{ color: "white" }}>Cart</ListItemText>
+                </ListItemIcon>
+              </ListItemButton>
+              <ListItemButton onClick={() => navigate("/account")} divider>
+                <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
+                  <ListItemText sx={{ color: "white" }}>Account</ListItemText>
+                </ListItemIcon>
+              </ListItemButton>
+              <ListItemButton onClick={() => navigate("/transactions")} divider>
+                <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
+                  <ListItemText sx={{ color: "white" }}>
+                    Transactions
+                  </ListItemText>
+                </ListItemIcon>
+              </ListItemButton>
+              <ListItemButton onClick={() => handleOnLogOut()} divider>
+                <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
+                  <ListItemText sx={{ color: "white" }}>Logout</ListItemText>
+                </ListItemIcon>
+              </ListItemButton>
+            </>
+          )}
+
+          {!userInfo && (
+            <>
+              <ListItemButton onClick={() => navigate("/login`")} divider>
+                <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
+                  <ListItemText sx={{ color: "white" }}>Login</ListItemText>
+                </ListItemIcon>
+              </ListItemButton>
+
+              <ListItemButton onClick={() => navigate("/signup")} divider>
+                <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
+                  <ListItemText sx={{ color: "white" }}>Sign up</ListItemText>
+                </ListItemIcon>
+              </ListItemButton>
+            </>
+          )}
         </List>
       </Drawer>
       <IconButton

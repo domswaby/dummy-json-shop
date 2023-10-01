@@ -12,7 +12,7 @@
 
 .cart-table-wrap {
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
 }
 
 .cart-table {
@@ -52,6 +52,25 @@
   cursor: pointer;
 }
 
+.checkout-button-wrap > button {
+  padding: 1rem 0 1rem 0;
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(180, 58, 58, 0.5);
+  border: 2px solid rgba(105, 0, 161, 0.3);
+  width: 50%;
+  font-size: 1.3rem;
+  border-radius: 6px;
+  transition: color 0.2s ease-in-out, letter-spacing 0.2s ease-in-out,
+    background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.checkout-button-wrap > button:hover {
+  background: rgba(255, 255, 255, 1);
+  color: rgba(180, 58, 58, 1);
+  border: 2px solid rgba(105, 0, 161, 1);
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
 @media (max-width: 800px) {
   .cart-table-wrap {
     width: 100%;
@@ -70,5 +89,8 @@
   }
   .cart-table {
     border-spacing: 5px 5px;
+  }
+  .checkout-button-wrap > button {
+    width: 75%;
   }
 }

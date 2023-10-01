@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { AppContext } from "../../Contexts/AppContext";
 import "./Cart.css";
 import NavBar from "../NavBar/NavBar";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const { cart, setCart, userInfo } = useContext(AppContext);
 
   const removeItemFromCart = (productId) => {
@@ -25,20 +27,18 @@ const Cart = () => {
     setCart({ ...cart, [userInfo.id]: userCart });
     console.log("Removed items from cart");
     console.log("New user cart: " + JSON.stringify(cart[userInfo.id]));
+  };
+  const handleInstantCheckout = () => {
+    // Display a confirmation dialog
+    const userConfirmation = window.confirm(
+      "Do you really want to buy all this stuff?"
+    );
 
-    // Filter out the product with the given productId
-    // const updatedProducts = cart[userInfo.id].products.filter(
-    //   (product) => product.id !== productId
-    // );
-
-    // // Update the cart with the new product list
-    // setCart({
-    //   ...cart,
-    //   [userInfo.id]: {
-    //     ...cart[userInfo.id],
-    //     products: updatedProducts,
-    //   },
-    // });
+    // If the user clicks "OK" (true), navigate to "/confirmation"
+    if (userConfirmation) {
+      navigate("/confirmation"); // You can also use react-router for navigation
+    }
+    // If the user clicks "Cancel" (false), do nothing
   };
 
   return (
@@ -77,7 +77,10 @@ const Cart = () => {
             </tbody>
           </table>
         </div>
-        {/* Display total and other cart information here */}
+
+        <div className="checkout-button-wrap">
+          <button onClick={handleInstantCheckout}>Instant Checkout</button>
+        </div>
       </div>
     </div>
   );

@@ -17,6 +17,8 @@ import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Account from "./components/Account/Account";
 import Product from "./components/Product/Product";
+import Confirmation from "./components/Confirmation/Confirmation";
+import History from "./components/History/History";
 
 import { AppContext } from "./Contexts/AppContext";
 import { AppContextProvider } from "./Contexts/AppContext";
@@ -36,6 +38,8 @@ function App() {
           }
         ></Route>
         <Route path="/product/:id" element={<Product />}></Route>
+        <Route path="/confirmation" element={<Confirmation />}></Route>
+        <Route path="/transactions" element={<History />}></Route>
         <Route path="/account" element={<Account />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         {/* <Route path="/account/:accountId" element={<Account />}></Route> */}
