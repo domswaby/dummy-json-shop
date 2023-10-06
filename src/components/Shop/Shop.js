@@ -143,6 +143,10 @@ const Shop = ({ myRef }) => {
     }
   }, [category]);
 
+  useEffect(() => {
+    setProductsForPage();
+  }, [filteredProducts]);
+
   const handleOnLogin = () => {
     setOpenModal(false);
     navigate("/login");
