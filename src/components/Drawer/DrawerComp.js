@@ -74,7 +74,7 @@ const DrawerComp = () => {
 
           {!userInfo && (
             <>
-              <ListItemButton onClick={() => navigate("/login`")} divider>
+              <ListItemButton onClick={() => navigate("/login")} divider>
                 <ListItemIcon sx={{ textAlign: "center", width: "100%" }}>
                   <ListItemText sx={{ color: "white" }}>Login</ListItemText>
                 </ListItemIcon>

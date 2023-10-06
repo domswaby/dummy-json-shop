@@ -18,6 +18,7 @@ const Product = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [showMinQuantityMessage, setShowMinQuantityMessage] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Add this state
 
   // Define the fetchProductById function outside of useEffect
   const fetchProductById = async () => {
@@ -86,9 +87,12 @@ const Product = () => {
 
       // Update the cart state
       setCart({ ...cart, [userInfo.id]: userCart });
-
       console.log("Cart Updated successfully");
       console.log(userCart.products);
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 3000);
     }
   };
 
@@ -195,6 +199,9 @@ const Product = () => {
               </button>
               {showMinQuantityMessage && (
                 <p className="min-quantity-message">Minimum quantity is 1.</p>
+              )}
+              {showSuccessMessage && (
+                <p className="success-message">{`${product.title} (Quantity: ${quantity}) added to the cart.`}</p>
               )}
             </div>
           </div>

@@ -40,7 +40,14 @@ function App() {
         <Route path="/product/:id" element={<Product />}></Route>
         <Route path="/confirmation" element={<Confirmation />}></Route>
         <Route path="/transactions" element={<History />}></Route>
-        <Route path="/account" element={<Account />}></Route>
+        <Route
+          path="/account"
+          element={
+            <AuthGuard>
+              <Account />
+            </AuthGuard>
+          }
+        ></Route>
         <Route path="/cart" element={<Cart />}></Route>
         {/* <Route path="/account/:accountId" element={<Account />}></Route> */}
         <Route path="/login" element={<Login />}></Route>

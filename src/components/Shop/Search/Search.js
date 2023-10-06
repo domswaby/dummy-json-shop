@@ -24,7 +24,6 @@ const CssTextField = styled(TextField)({
     },
   },
   color: "#282c34",
-  width: "100%",
 });
 
 const Search = ({
@@ -45,8 +44,13 @@ const Search = ({
     setCategory(e.target.value);
   };
 
+  const searchInputStyles = {
+    width: "100%",
+    margin: "1rem auto 5px auto",
+  };
+
   return (
-    <>
+    <div>
       <div className="category-select-wrap">
         <select onChange={handleCategoryChange} value={category}>
           <option value="">Category</option>
@@ -57,15 +61,18 @@ const Search = ({
           ))}
         </select>
       </div>
-      <CssTextField
-        className="search-input"
-        label={"🔍 Search " + (category ? category : "products")}
-        type="search"
-        id="custom-css-outlined-input"
-        defaultValue={search}
-        onChange={(e) => debouncedSearch(e.target.value)}
-      />
-    </>
+      <div className="search-input-wrap">
+        <CssTextField
+          sx={searchInputStyles}
+          className="search-input"
+          label={"🔍 Search " + (category ? category : "products")}
+          type="search"
+          id="custom-css-outlined-input"
+          defaultValue={search}
+          onChange={(e) => debouncedSearch(e.target.value)}
+        />
+      </div>
+    </div>
   );
 };
 

@@ -1,7 +1,10 @@
+.search-input-wrap{
+  width: 50%; 
+  margin: 0 auto;
+}
 .search-input {
   color: black;
   border-color: black;
-  margin-bottom: 5px;
 }
 
 .search-input:focus {
@@ -28,4 +31,13 @@
 .category-select-wrap > select:hover {
   letter-spacing: 2px;
   cursor: pointer;
+}
+
+@media (max-width: 600px){
+  .search-input-wrap{
+    width: 100%; 
+  }
+  .category-select-wrap > select {
+    width: 100%; 
+  }
 }

@@ -5,3 +5,7 @@
   font-family: "DummyFont";
   color: var(--my-purple-1);
 }
+
+.confirmation-wrap{
+    text-align: center;
+}

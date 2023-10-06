@@ -9,8 +9,8 @@ export const AppContextProvider = ({ children }) => {
   const [newUsers, setNewUsers] = useState([]);
   const [isRealUser, setIsRealUser] = useState(false);
   const [cart, setCart] = useState({});
-  const [justOrderedCart, setJustOrderedCart] = useState({});
   const [mostRecentTransaction, setMostRecentTransaction] = useState(null);
+  const [transactionHistory, setTransactionHistory] = useState({});
 
   const value = {
     userInfo,
@@ -24,6 +24,9 @@ export const AppContextProvider = ({ children }) => {
     cart,
     setCart,
     mostRecentTransaction,
+    setMostRecentTransaction,
+    transactionHistory,
+    setTransactionHistory,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

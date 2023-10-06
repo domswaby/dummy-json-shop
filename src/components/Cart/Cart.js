@@ -3,10 +3,12 @@ import { AppContext } from "../../Contexts/AppContext";
 import "./Cart.css";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
+import { cartFactory } from "../Product/CartFactory";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { cart, setCart, userInfo } = useContext(AppContext);
+  const { cart, setCart, userInfo, transactionHistory, setTransactionHistory } =
+    useContext(AppContext);
 
   const removeItemFromCart = (productId) => {
     console.log(productId);
@@ -36,6 +38,30 @@ const Cart = () => {
 
     // If the user clicks "OK" (true), navigate to "/confirmation"
     if (userConfirmation) {
+      // Assuming transactionHistory and navigate are defined somewhere
+      if (!(userInfo.id in transactionHistory)) {
+        // Create a new array for the user's transaction history if it doesn't exist
+        transactionHistory[userInfo.id] = [];
+      }
+      const timestamp = new Date().toISOString();
+      let oldCart = cart[userInfo.id];
+      oldCart.timestamp = timestamp;
+      // Push the current cart to the user's transaction history
+      transactionHistory[userInfo.id].push(oldCart);
+
+      // Update the transactionHistory object
+      setTransactionHistory({
+        ...transactionHistory,
+      });
+      let newCart = cartFactory();
+      newCart.id = userInfo.id;
+      newCart.userId = userInfo.id;
+      setCart({ ...cart, [userInfo.id]: newCart });
+
+      // Log the updated transaction history
+      console.log(JSON.stringify(transactionHistory));
+
+      // Navigate to "/confirmation" (assuming navigate is correctly defined)
       navigate("/confirmation"); // You can also use react-router for navigation
     }
     // If the user clicks "Cancel" (false), do nothing
@@ -46,6 +72,10 @@ const Cart = () => {
       <NavBar />
       <div className="cart-container">
         <h2 className="cart-header">Your Cart</h2>
+        {cart[userInfo.id].products.length === 0 && (
+          <p>Nothing in your cart yet!</p>
+        )}
+
         <div className="cart-table-wrap">
           <table className="cart-table">
             <thead>

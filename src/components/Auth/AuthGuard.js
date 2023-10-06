@@ -9,7 +9,7 @@ const AuthGuard = ({ children }) => {
   const { userInfo } = useContext(AppContext);
 
   const location = useLocation();
-  if (true) {
+  if (userInfo) {
     return children;
   } else {
     return <Navigate to={"/login"} state={{ from: location }} replace />;
