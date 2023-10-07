@@ -11,8 +11,8 @@
 }
 
 .current-results-description {
-  width: 70%;
-  margin: 1rem auto 0 auto;
+  width: 50%;
+  margin: 0.3rem auto 0 auto;
 }
 
 @media (max-width: 600px) {

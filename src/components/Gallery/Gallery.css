@@ -43,8 +43,19 @@
   color: #333;
 }
 
+.no-results-wrap > p{
+  text-align: center;
+  font-family: "DummyFont";
+  font-size: 4rem;
+  padding: 2rem 0 1rem 0;
+  color: rgba(180, 58, 58, 1);
+}
+
 @media (max-width: 800px) {
   .card {
     flex-grow: 1;
+  }
+  .no-results-wrap > p{
+    font-size: 3rem;
   }
 }

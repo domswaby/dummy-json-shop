@@ -1,4 +1,4 @@
-.signup-btn {
+/* .signup-btn {
   margin-top: 1rem;
 }
 .signup-btn > button {
@@ -22,4 +22,11 @@
   font-size: 3rem;
   margin: 4rem 0 10rem 0;
   color: blue;
+} */
+
+.auth-error {
+  color: red;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
 }

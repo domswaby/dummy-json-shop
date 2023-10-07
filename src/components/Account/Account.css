@@ -33,6 +33,17 @@
   width: 50%;
   margin: 0 auto;
 }
+.details-image-wrap {
+  text-align: center;
+  margin-bottom: 2rem;
+  box-shadow: 2px 2px 10px 1px inset;
+  padding: 2px;
+}
+.details-image-wrap > img {
+  border-radius: 100%;
+  width: 300px; 
+  height: 300px;
+}
 
 @media (max-width: 800px) {
   .details-wrap {
@@ -43,5 +54,9 @@
   }
   .details-wrap > p {
     font-size: 1.2rem;
+  }
+  .details-image-wrap > img {
+    height: 200px;
+    width: 200px;
   }
 }

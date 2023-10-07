@@ -52,7 +52,6 @@ const Shop = ({ myRef }) => {
     setAllProducts(resData.products);
     setProducts(resData.products.slice(0, 10));
     setCuratedPage(1);
-    setLoading(false);
   };
 
   const getSearched = async () => {
@@ -80,7 +79,6 @@ const Shop = ({ myRef }) => {
     setFilteredProducts(matchingProducts);
     setSearchedPage(1);
     setProductsForPage();
-    setLoading(false);
   };
 
   const setProductsForPage = () => {
@@ -145,7 +143,12 @@ const Shop = ({ myRef }) => {
 
   useEffect(() => {
     setProductsForPage();
+    setLoading(false);
   }, [filteredProducts]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [products]);
 
   const handleOnLogin = () => {
     setOpenModal(false);

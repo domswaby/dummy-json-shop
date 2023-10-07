@@ -34,6 +34,7 @@ const Login = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            // use any dummy credentials because we just want a token to be returned for simulation
             username: "kminchelle",
             password: "0lelplR",
             // expiresInMins: 60, // optional
@@ -50,7 +51,7 @@ const Login = () => {
           } else {
             setIsRealUser(true);
             setUserInfo(newUserInfo);
-            navigate("/dashboard");
+            navigate("/");
           }
         } else {
           console.log("bad request");
