@@ -185,7 +185,7 @@ const Product = () => {
             </div>
           </div>
           <div className="add-container">
-            <p>Quantity:</p>
+            <p className="quantity-colon">Quantity:</p>
             <div className="number-select-wrap">
               <input
                 type="number"
@@ -210,7 +210,6 @@ const Product = () => {
         </div>
       ) : (
         <div className="product-spinner-wrap">
-          <p>Loading product...</p>
           <Spinner />
         </div>
       )}

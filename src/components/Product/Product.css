@@ -1,3 +1,7 @@
+.product-container{
+  margin-bottom: 5rem;
+}
+
 .product-wrap {
   min-height: 100vh;
   display: flex;
@@ -70,6 +74,7 @@
   border: 2px solid rgba(255, 255, 255, 1);
 }
 
+
 @media (max-width: 600px) {
   .product-details-wrap,
   .product-image-wrap {
@@ -78,5 +83,16 @@
   .product-wrap {
     gap: 0px;
     padding: 20px;
+  }
+  .add-container{
+    margin-top: 1rem;
+    width: 90%;
+  }
+  .product-details > h2 {
+    font-size: 2rem;
+  }
+  .add-container > p{
+    font-size: 1.5rem;
+    font-weight: 300;
   }
 }
