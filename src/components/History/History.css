@@ -1,7 +1,54 @@
+.history-wrap {
+  margin-top: 30px;
+  padding: 30px;
+  text-align: center;
+}
+
 .history-wrap > h2 {
   text-align: center;
   padding-bottom: 2rem;
   font-size: 3rem;
   font-family: "DummyFont";
   color: var(--my-purple-1);
+}
+.history-user-header {
+  font-family: "DummyFont";
+
+  font-size: 2rem;
+  margin: 0 0 2rem 0;  
+  
+}
+
+.transaction-table {
+  border: 2px dotted var(--my-purple-1);
+  padding: 30px 20px 30px 20px;
+  margin: 0 0 3rem 0;
+  background: white;
+}
+.history-table-wrap {
+  width: 80%;
+  margin: 0 auto 2rem auto;
+}
+
+.history-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate; /* Separate border spacing */
+  border-spacing: 1rem 2rem;
+}
+@media (max-width: 600px) {
+  .history-wrap {
+    padding: 20px 5px 20px 5px;
+  }
+
+  .history-table-wrap {
+    width: 100%;
+  }
+
+  .transaction-table {
+    padding: 20px 0px 20px 0px;
+  }
+  .history-table {
+    border-spacing: 0.5rem 1rem;
+  }
 }
