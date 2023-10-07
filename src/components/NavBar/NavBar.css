@@ -18,3 +18,10 @@
 .show-info {
   display: none;
 }
+
+.menu-avatar-small{
+  height: 40px; 
+  width: 40px;
+  border-radius: 100%;
+  
+}

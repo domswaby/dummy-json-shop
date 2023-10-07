@@ -1,11 +1,89 @@
 .confirmation-wrap > h2 {
   text-align: center;
   padding-bottom: 2rem;
+  margin: 2rem 0 0 0;
   font-size: 3rem;
   font-family: "DummyFont";
   color: var(--my-purple-1);
 }
 
-.confirmation-wrap{
-    text-align: center;
+.confirmation-wrap {
+  text-align: center;
+  margin: 0 0 3rem 0;
+}
+.order-details-info {
+  margin: 0 0 2rem 0;
+  text-align: left;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+.order-details > h3 {
+  font-size: 1.9rem;
+  font-family: "DummyFont";
+  margin: 0 0 1.5rem 0;
+}
+.order-items {
+  border: 2px dotted var(--my-purple-1);
+  padding: 1rem 0 1rem 0;
+  width: 60%;
+  margin: 0 auto;
+}
+.product-item {
+  text-align: left;
+  width: 70%;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.product-item > div{
+  flex: 1;
+}
+
+.product-details-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.go-to-history-button-wrap{
+  text-align: center;
+  margin: 0 0 7rem 0;
+}
+
+.go-to-history-button-wrap > button {
+  padding: 1rem 0 1rem 0;
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(105, 0, 161, 0.3);
+  border: 2px solid rgba(105, 0, 161, 0.3);
+  width: 50%;
+  
+  font-size: 1.3rem;
+  border-radius: 6px;
+  transition: color 0.2s ease-in-out, letter-spacing 0.2s ease-in-out,
+    background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.go-to-history-button-wrap > button:hover {
+  background: rgba(255, 255, 255, 1);
+  color: rgba(105, 0, 161, 1);
+  border: 2px solid rgba(105, 0, 161, 1);
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+@media (max-width: 800px){
+  .order-items{ 
+    width: 97%;
+    font-size: 0.9rem;
+  }
+  .product-item{
+    width: 90%;
+  }
+  .go-to-history-button-wrap > button {
+    width: 90%;
+    font-size: 1.2rem;
+  }
+  .order-details-info{
+    font-size: 1.1rem;
+  }
 }

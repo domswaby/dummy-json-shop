@@ -123,6 +123,7 @@ const NavBar = () => {
                 <StoreIcon />
               </Link>
             </Typography>
+
             <DrawerComp />
           </>
         ) : (
@@ -198,6 +199,7 @@ const NavBar = () => {
                     </Badge>
                   </IconButton>
                 </Box>
+
                 <div>
                   <IconButton
                     size="large"
