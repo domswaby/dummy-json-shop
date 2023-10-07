@@ -25,10 +25,32 @@ const Login = () => {
   const [error, setError] = useState(""); // State to hold the error message
   const navigate = useNavigate();
 
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const handleLogin = async () => {
     // if the user is using their own credentials
+    let isValid = true;
     if (selectedName === "clearInputs" || selectedName === "") {
       console.log("own credentials option");
+      if (username.trim() === "") {
+        setUsernameError("Username is required");
+        isValid = false;
+      }
+
+      if (password.trim() === "") {
+        setPasswordError("Password is required");
+        isValid = false;
+      }
+
+      if (!isValid) {
+        // Display error messages for 3 seconds
+        setTimeout(() => {
+          setUsernameError("");
+          setPasswordError("");
+        }, 3000); // 3 seconds in milliseconds
+        return;
+      }
       try {
         const response = await fetch("https://dummyjson.com/auth/login", {
           method: "POST",
@@ -219,6 +241,8 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            <div className="auth-error">{usernameError}</div>
+            <div className="auth-error">{passwordError}</div>
           </div>
           <div className="auth-btn">
             <button onClick={handleLogin}>Login</button>

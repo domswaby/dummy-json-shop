@@ -103,6 +103,9 @@ const NavBar = () => {
   const goToAccount = () => {
     navigate("/account");
   };
+  const goToTransactions = () => {
+    navigate("/transactions");
+  };
 
   return (
     <AppBar
@@ -116,7 +119,9 @@ const NavBar = () => {
         {isMatch ? (
           <>
             <Typography>
-              <StoreIcon />
+              <Link to="/">
+                <StoreIcon />
+              </Link>
             </Typography>
             <DrawerComp />
           </>
@@ -222,6 +227,7 @@ const NavBar = () => {
                     <MenuItem onClick={goToAccount}>My account</MenuItem>
                     <MenuItem onClick={goToShop}>Shop</MenuItem>
                     <MenuItem onClick={goToCart}>Cart</MenuItem>
+                    <MenuItem onClick={goToTransactions}>Transactions</MenuItem>
                   </Menu>
                 </div>
                 {/* <Button
