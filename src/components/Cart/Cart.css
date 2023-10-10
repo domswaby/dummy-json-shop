@@ -8,6 +8,7 @@
   font-size: 3rem;
   font-family: "DummyFont";
   color: var(--my-purple-1);
+  margin: 2rem 0 0 0;
 }
 
 .cart-table-wrap {
@@ -70,6 +71,13 @@
   border: 2px solid rgba(105, 0, 161, 1);
   letter-spacing: 2px;
   cursor: pointer;
+}
+
+.empty-cart-message{
+  font-family: "DummyFont";
+  font-size: 1.7rem;
+  letter-spacing: 2px;
+  color: var(--my-red-1);
 }
 
 @media (max-width: 800px) {

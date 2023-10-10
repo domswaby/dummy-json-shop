@@ -36,6 +36,15 @@
   border-collapse: separate; /* Separate border spacing */
   border-spacing: 1rem 2rem;
 }
+
+.no-purchases-message{
+  font-family: "DummyFont";
+  font-size: 1.7rem;
+  color: var(--my-red-1);
+  letter-spacing: 2px;
+}
+
+
 @media (max-width: 600px) {
   .history-wrap {
     padding: 20px 5px 20px 5px;

@@ -66,7 +66,7 @@ const History = () => {
             ))}
           </div>
         ) : (
-          <p>No transaction history available for User ID: {currentUserId}</p>
+          <p className="no-purchases-message">You haven't purchased anything yet.</p>
         )}
       </div>
     </div>

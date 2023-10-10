@@ -1,5 +1,5 @@
-.search-input-wrap{
-  width: 50%; 
+.search-input-wrap {
+  width: 50%;
   margin: 0 auto;
 }
 .search-input {
@@ -24,7 +24,8 @@
   color: white;
   font-size: 1.1rem;
   background: var(--my-purple-1);
-  transition: letter-spacing 0.2s ease-in;
+  transition: letter-spacing 0.2s ease-
+  in, outline 0.2s ease-in;
   text-align: center;
 }
 
@@ -32,12 +33,17 @@
   letter-spacing: 2px;
   cursor: pointer;
 }
+.category-select-wrap > select:focus {
+  outline: 1px outset rgba(166, 69, 252, 1);
+}
 
-@media (max-width: 600px){
-  .search-input-wrap{
-    width: 100%; 
+/* dashed double groove ridge inset outset */
+
+@media (max-width: 600px) {
+  .search-input-wrap {
+    width: 100%;
   }
   .category-select-wrap > select {
-    width: 100%; 
+    width: 100%;
   }
 }

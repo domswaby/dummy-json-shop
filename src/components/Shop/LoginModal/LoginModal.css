@@ -59,37 +59,40 @@
 
 .btnYes,
 .btnNo {
+  font-family: "DummyFont";
   font-size: 2.5rem;
   font-weight: 700;
-  background-color: transparent;
+  background: linear-gradient(
+    90deg,
+    rgba(180, 58, 58, 1) 2%,
+    rgba(49, 49, 116, 1) 36%,
+    rgba(105, 0, 161, 1) 73%,
+    rgba(166, 69, 252, 1) 100%
+  );
   padding: 2rem 0 2rem 0;
   width: 45%;
+  color: rgb(255, 255, 255, 0.3);
   border-radius: 40px;
-  transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, border 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
-
 .btnYes {
-  border: 1rem solid rgb(0, 128, 0, 0.2);
-  color: rgb(0, 128, 0, 0.4);
   box-shadow: -5px 5px 5px 0px rgba(255, 255, 255, 0.2);
 }
-.btnYes:hover {
-  border: 1rem solid rgb(0, 128, 0, 1);
-  color: rgb(0, 128, 0, 1);
-}
-
 .btnNo {
-  border: 1rem solid rgb(0, 128, 0, 0.2);
-  color: rgb(0, 128, 0, 0.4);
   box-shadow: 5px 5px 5px 0px rgba(255, 255, 255, 0.2);
 }
-.btnNo:hover {
-  border: 1rem solid rgb(0, 128, 0, 1);
-  color: rgb(0, 128, 0, 1);
+.btnYes:hover {
+  box-shadow: -5px 5px 5px 0px rgba(255, 255, 255, 0.7);
 }
+.btnNo:hover {
+  box-shadow: 5px 5px 5px 0px rgba(255, 255, 255, 0.7);
+}
+
 .btnYes:hover,
 .btnNo:hover {
   cursor: pointer;
+  color: white;
 }
 
 @media (max-width: 1200px) {

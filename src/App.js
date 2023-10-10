@@ -30,16 +30,29 @@ function App() {
       <Route path="/" element={<Root />}>
         <Route index element={<Home />}></Route>
         <Route
-          path="dashboard"
+          path="/product/:id"
           element={
             <AuthGuard>
-              <Dashboard />
+              <Product />
             </AuthGuard>
           }
         ></Route>
-        <Route path="/product/:id" element={<Product />}></Route>
-        <Route path="/confirmation" element={<Confirmation />}></Route>
-        <Route path="/transactions" element={<History />}></Route>
+        <Route
+          path="/confirmation"
+          element={
+            <AuthGuard>
+              <Confirmation />
+            </AuthGuard>
+          }
+        ></Route>
+        <Route
+          path="/transactions"
+          element={
+            <AuthGuard>
+              <History />
+            </AuthGuard>
+          }
+        ></Route>
         <Route
           path="/account"
           element={
@@ -48,10 +61,31 @@ function App() {
             </AuthGuard>
           }
         ></Route>
-        <Route path="/cart" element={<Cart />}></Route>
+        <Route
+          path="/cart"
+          element={
+            <AuthGuard>
+              <Cart />
+            </AuthGuard>
+          }
+        ></Route>
         {/* <Route path="/account/:accountId" element={<Account />}></Route> */}
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
+        <Route
+          path="/login"
+          element={
+            <UnAuthGuard>
+              <Login />
+            </UnAuthGuard>
+          }
+        ></Route>
+        <Route
+          path="/signup"
+          element={
+            <UnAuthGuard>
+              <SignUp />
+            </UnAuthGuard>
+          }
+        ></Route>
       </Route>
     )
   );
