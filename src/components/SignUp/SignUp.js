@@ -100,8 +100,6 @@ const SignUp = () => {
         setCart({ ...cart, [newUser.id]: newCart });
         setSuccessMessage("Sign up successful. You can now log in.");
         setErrorMessage("");
-        console.log("This is the new cart" + JSON.stringify(newCart));
-        console.log("These are the newUsers: " + JSON.stringify(newUsers));
       } else {
         setSuccessMessage("");
         setErrorMessage("Sign up failed. Please check your information.");

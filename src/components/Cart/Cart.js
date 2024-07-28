@@ -11,7 +11,6 @@ const Cart = () => {
     useContext(AppContext);
 
   const removeItemFromCart = (productId) => {
-    console.log(productId);
     const userCart = cart[userInfo.id];
     for (let i = 0; i < userCart.products.length; i++) {
       if (userCart.products[i].id == productId) {
@@ -27,8 +26,6 @@ const Cart = () => {
       }
     }
     setCart({ ...cart, [userInfo.id]: userCart });
-    console.log("Removed items from cart");
-    console.log("New user cart: " + JSON.stringify(cart[userInfo.id]));
   };
   const handleInstantCheckout = () => {
     // Display a confirmation dialog
@@ -58,9 +55,6 @@ const Cart = () => {
       newCart.id = userInfo.id;
       newCart.userId = userInfo.id;
       setCart({ ...cart, [userInfo.id]: newCart });
-
-      // Log the updated transaction history
-      console.log(JSON.stringify(transactionHistory));
 
       // Navigate to "/confirmation" (assuming navigate is correctly defined)
       navigate("/confirmation"); // You can also use react-router for navigation

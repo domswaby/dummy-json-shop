@@ -7,8 +7,6 @@ import { AppContext } from "../../Contexts/AppContext";
 const Account = () => {
   const { userInfo } = useContext(AppContext);
 
-  console.log(JSON.stringify(userInfo));
-
   return (
     <div>
       <NavBar />

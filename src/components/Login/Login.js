@@ -32,7 +32,6 @@ const Login = () => {
     // if the user is using their own credentials
     let isValid = true;
     if (selectedName === "clearInputs" || selectedName === "") {
-      console.log("own credentials option");
       if (username.trim() === "") {
         setUsernameError("Username is required");
         isValid = false;
@@ -66,7 +65,6 @@ const Login = () => {
         if (response.ok) {
           const newUserInfo = getUserInfo(username, newUsers);
           if (newUserInfo === null) {
-            console.log("user info is null");
             handleErrorMessage(
               "Authentication failed. Please check your credentials."
             );
@@ -76,7 +74,6 @@ const Login = () => {
             navigate("/");
           }
         } else {
-          console.log("bad request");
           handleErrorMessage(
             "Authentication failed. Please check your credentials."
           );
@@ -100,7 +97,6 @@ const Login = () => {
           const responseData = await response.json();
           setIsRealUser(false);
           setUserInfo(responseData);
-          console.log("This is responseData" + responseData.id);
           if (!(responseData.id in cart)) {
             try {
               const cartResponse = await fetch(
@@ -113,15 +109,11 @@ const Login = () => {
                   newCart = cartFactory();
                   newCart.id = responseData.id;
                   newCart.userId = responseData.id;
-                  console.log("Used the cart Factory in login");
-                  console.log(
-                    "factory create this cart: " + JSON.stringify(newCart)
-                  );
                 } else {
                   newCart = cartData.carts[0];
                   newCart.id = responseData.id;
                 }
-                console.log("This is the new cart" + JSON.stringify(newCart));
+
                 setCart({ ...cart, [responseData.id]: newCart });
               } else {
                 console.error("Failed to fetch user's cart data.");
@@ -141,7 +133,6 @@ const Login = () => {
           );
         }
       } catch (error) {
-        console.log("came into the error block");
         handleErrorMessage("An error occurred. Please try again later.");
       }
     }
@@ -170,13 +161,11 @@ const Login = () => {
         setPassword(selectedUser.password);
       }
     }
-    console.log(selectedValue);
   };
 
   const initializeFakeUsers = async () => {
     try {
       let newFakeUsers = await getFakeUsers();
-      console.log(newFakeUsers.users[0]);
 
       // Simulate a delay of 2 seconds (2000 milliseconds)
       setTimeout(() => {
@@ -190,7 +179,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log(newUsers);
     initializeFakeUsers();
   }, []);
 

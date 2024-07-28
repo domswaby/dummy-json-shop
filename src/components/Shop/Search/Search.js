@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import "./Search.css";
@@ -39,9 +40,17 @@ const Search = ({
     setSearch(val);
   }, 500);
 
+  const [displayCategory, setDisplayCategory] = useState({
+    name: "Category",
+    slug: "",
+    url: "",
+  });
+
   // Handle category selection changes
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
+    let val = JSON.parse(e.target.value);
+    setDisplayCategory(e.target.value);
+    setCategory(val.slug);
   };
 
   const searchInputStyles = {
@@ -52,11 +61,15 @@ const Search = ({
   return (
     <div>
       <div className="category-select-wrap">
-        <select onChange={handleCategoryChange} value={category}>
-          <option value="">Category</option>
+        <select onChange={handleCategoryChange} value={displayCategory}>
+          <option
+            value={JSON.stringify({ name: "Category", slug: "", url: "" })}
+          >
+            Category
+          </option>
           {categories.map((categoryOption, index) => (
-            <option key={index} value={categoryOption}>
-              {categoryOption}
+            <option key={index} value={JSON.stringify(categoryOption)}>
+              {categoryOption.name}
             </option>
           ))}
         </select>

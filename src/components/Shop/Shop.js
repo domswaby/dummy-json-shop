@@ -39,7 +39,6 @@ const Shop = ({ myRef }) => {
       const { data } = await axios.get(
         `https://dummyjson.com/products?limit=0`
       );
-      console.log(data);
       resData = data;
     } else if (category) {
       const { data } = await axios.get(

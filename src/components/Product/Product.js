@@ -87,8 +87,7 @@ const Product = () => {
 
       // Update the cart state
       setCart({ ...cart, [userInfo.id]: userCart });
-      console.log("Cart Updated successfully");
-      console.log(userCart.products);
+
       setShowSuccessMessage(true);
       setTimeout(() => {
         setShowSuccessMessage(false);
@@ -135,9 +134,6 @@ const Product = () => {
   //         userCart = updateUserCartProduct(userCart, cartProduct);
   //       }
   //       setCart({ ...cart, [userInfo.id]: userCart });
-
-  //       console.log("Cart Updated successfully");
-  //       console.log(userCart.products);
   //     }
   //   };
 
