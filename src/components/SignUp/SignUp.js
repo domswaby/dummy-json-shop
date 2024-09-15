@@ -97,7 +97,11 @@ const SignUp = () => {
         let newCart = cartFactory();
         newCart.id = newUser.id;
         newCart.userId = newUser.id;
-        setCart({ ...cart, [newUser.id]: newCart });
+        setCart((prevCart) => ({
+          ...prevCart,
+          [newUser.id]: newCart,
+        }));
+
         setSuccessMessage("Sign up successful. You can now log in.");
         setErrorMessage("");
       } else {
