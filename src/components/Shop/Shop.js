@@ -26,7 +26,7 @@ const Shop = ({ myRef }) => {
   const [allProducts, setAllProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [totalCuratedResults, setTotalCuratedResults] = useState(0);
   const [totalSearchedResults, setTotalSearchedResults] = useState(0);
@@ -61,13 +61,13 @@ const Shop = ({ myRef }) => {
     for (const product of allProducts) {
       const productTitle = product.title.toLowerCase();
       const productDescription = product.description.toLowerCase();
-      const productBrand = product.brand.toLowerCase();
+      const productBrand = product.brand?.toLowerCase();
       const productCategory = product.category.toLowerCase();
 
       if (
         productTitle.includes(searchTerm) ||
         productDescription.includes(searchTerm) ||
-        productBrand.includes(searchTerm) ||
+        productBrand?.includes(searchTerm) ||
         productCategory.includes(searchTerm)
       ) {
         matchingProducts.push(product);
@@ -146,7 +146,9 @@ const Shop = ({ myRef }) => {
   }, [filteredProducts]);
 
   useEffect(() => {
-    setLoading(false);
+    if (products.length > 0) {
+      setLoading(false);
+    }
   }, [products]);
 
   const handleOnLogin = () => {
