@@ -3,19 +3,15 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { AppContext } from "../../Contexts/AppContext.js";
 import { useNavigate } from "react-router-dom";
-import { login } from "../Auth/AuthService.js";
+
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.js";
 import { cartFactory } from "../Product/CartFactory.js";
-import {
-  isFakeUser,
-  getFakeUsers,
-  getUserInfo,
-} from "../../Services/UserService.js";
+import { getFakeUsers, getUserInfo } from "../../Services/UserService.js";
 import "./Login.css";
 
 const Login = () => {
-  const { userInfo, newUsers, setUserInfo, setIsRealUser, setCart, cart } =
+  const { newUsers, setUserInfo, setIsRealUser, setCart, cart } =
     useContext(AppContext);
   const [fakeUsers, setFakeUsers] = useState([]);
   const [loadingFakes, setLoadingFakes] = useState(true);
@@ -55,10 +51,8 @@ const Login = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            // use any dummy credentials because we just want a token to be returned for simulation
-            username: "kminchelle",
-            password: "0lelplR",
-            // expiresInMins: 60, // optional
+            username: "sophiab",
+            password: "sophiabpass",
           }),
         });
 

@@ -1,27 +1,20 @@
 import { AppContext } from "../../Contexts/AppContext.js";
 import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.js";
 import { cartFactory } from "../Product/CartFactory.js";
 import "../Login/Login.css";
 import "./SignUp.css";
 
 const SignUp = () => {
-  const {
-    newUserCount,
-    setNewUserCount,
-    newUsers,
-    setNewUsers,
-    cart,
-    setCart,
-  } = useContext(AppContext);
+  const { newUserCount, setNewUserCount, setNewUsers, setCart } =
+    useContext(AppContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
 
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
