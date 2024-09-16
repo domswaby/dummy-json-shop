@@ -138,7 +138,7 @@ const NavBar = () => {
                 </Link>
               </Typography>
             </Grid>
-            <Grid xs={6}>
+            <Grid item xs={6}>
               <p></p>
               {/* <Tabs
                 indicatorColor="secondary"
@@ -157,7 +157,6 @@ const NavBar = () => {
                 <Button
                   className="my-nav-btn"
                   sx={loginButtonStyles}
-                  to="/login"
                   variant="contained"
                 >
                   <Link to="/login">Login</Link>
@@ -232,13 +231,6 @@ const NavBar = () => {
                     <MenuItem onClick={goToTransactions}>Transactions</MenuItem>
                   </Menu>
                 </div>
-                {/* <Button
-                  className="my-nav-btn"
-                  sx={{ marginLeft: 1, background: "none" }}
-                  variant="contained"
-                >
-                  <Link to="/signup">Signup</Link>
-                </Button> */}
               </Box>
             </Grid>
           </Grid>
